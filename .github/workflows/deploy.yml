@@ -8,39 +8,44 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: production   # ← استفاده از environment برای دسترسی به secrets
 
     steps:
+      # 1️⃣ Checkout code
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # 2️⃣ Setup Docker Buildx
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      # 3️⃣ Check secrets availability
       - name: Check secrets availability
         run: |
           echo "DOCKER_USERNAME: ${DOCKER_USERNAME:+SET}"
           echo "DOCKER_PASSWORD: ${DOCKER_PASSWORD:+SET}"
           echo "VPS_HOST: ${VPS_HOST:+SET}"
           echo "VPS_USER: ${VPS_USER:+SET}"
-          echo "VPS_PASSWORD: ${VPS_PASSWORD:+SET}"
+          echo "VPS_PRIVATE_KEY: ${VPS_PRIVATE_KEY:+SET}"
           echo "SSH_PORT: ${SSH_PORT:+SET}"
 
+      # 4️⃣ Docker Hub login
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      # 5️⃣ Build & push Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/mousavi:latest
             ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
 
+      # 6️⃣ Deploy to VPS
       - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -49,9 +54,14 @@ jobs:
           key: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            echo "Pulling new image..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
+
+            echo "Stopping old container..."
             docker stop mousavi || true
             docker rm mousavi || true
+
+            echo "Running new container..."
             docker run -d \
               --name mousavi \
               --restart unless-stopped \
@@ -59,4 +69,6 @@ jobs:
               -v /home/mousavi/static:/app/staticfiles \
               -v /home/mousavi/media:/app/media \
               ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
+
+            echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
