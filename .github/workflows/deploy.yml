@@ -43,15 +43,22 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       # 6️⃣ Check Secrets (safe check, no sensitive data printed)
-      - name: Check secrets
+      - name: Check secrets (safe)
         run: |
-          echo "DOCKER_USERNAME length: ${#{{ secrets.DOCKER_USERNAME }}}"
-          echo "DOCKER_PASSWORD length: ${#{{ secrets.DOCKER_PASSWORD }}}"
-          echo "VPS_HOST length: ${#{{ secrets.VPS_HOST }}}"
-          echo "VPS_USER length: ${#{{ secrets.VPS_USER }}}"
-          echo "VPS_SSH_KEY length: ${#{{ secrets.VPS_SSH_KEY }}}"
-          echo "VPS_SSH_KEY first 20 chars: ${secrets.VPS_SSH_KEY:0:20}"
-          echo "VPS_SSH_KEY last 20 chars: ${secrets.VPS_SSH_KEY: -20}"
+          DOCKER_USERNAME="${{ secrets.DOCKER_USERNAME }}"
+          DOCKER_PASSWORD="${{ secrets.DOCKER_PASSWORD }}"
+          VPS_HOST="${{ secrets.VPS_HOST }}"
+          VPS_USER="${{ secrets.VPS_USER }}"
+          VPS_SSH_KEY="${{ secrets.VPS_SSH_KEY }}"
+
+          echo "DOCKER_USERNAME length: ${#DOCKER_USERNAME}"
+          echo "DOCKER_PASSWORD length: ${#DOCKER_PASSWORD}"
+          echo "VPS_HOST length: ${#VPS_HOST}"
+          echo "VPS_USER length: ${#VPS_USER}"
+          echo "VPS_SSH_KEY length: ${#VPS_SSH_KEY}"
+          echo "VPS_SSH_KEY first 20 chars: ${VPS_SSH_KEY:0:20}"
+          echo "VPS_SSH_KEY last 20 chars: ${VPS_SSH_KEY: -20}"
+      
 
       # 7️⃣ Setup SSH key for connecting to VPS
       - name: Setup SSH key
