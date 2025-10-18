@@ -1,0 +1,71 @@
+name: Build & Deploy Django App (Docker Hub)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    env:
+      IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/mousavi
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to VPS
+        run: |
+          ssh -i ~/.ssh/id_rsa ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            set -e
+            IMAGE=${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+            echo "Pulling new image..."
+            docker pull $IMAGE
+
+            echo "Stopping old container..."
+            docker stop mousavi || true
+            docker rm mousavi || true
+
+            echo "Running new container..."
+            docker run -d \
+              --name mousavi \
+              --restart unless-stopped \
+              -p 8000:8000 \
+              -v /home/mousavi/static:/app/staticfiles \
+              -v /home/mousavi/media:/app/media \
+              $IMAGE
+
+            echo "Cleaning up old images..."
+            docker image prune -af --filter "until=24h"
+          EOF

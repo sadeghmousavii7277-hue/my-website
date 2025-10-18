@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}موسوی آکادمی{% endblock %}
+
+{% block hero %}
+    <section class="hero container">
+        <div class="hero__grid">
+            <a class="banner" href="#">
+                <img src="{% static 'img/hero-banner.jpg' %}" alt="سی‌پی دوبل">
+                <span class="badge badge--light">خرید آنی</span>
+            </a>
+
+            <a class="banner" href="#">
+                <img src="{% static 'img/banner-cod.jpg' %}" alt="خرید سی‌پی کالاف">
+                <div class="chips">
+                    <span class="chip">ارزان</span>
+                    <span class="chip">فوری</span>
+                    <span class="chip">قانونی</span>
+                </div>
+            </a>
+
+            <a class="banner" href="#">
+                <img src="{% static 'img/banner-steam.jpg' %}" alt="تخفیفات پاییز استیم">
+            </a>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+
+    <section class="catbar">
+        <div class="container catbar__row">
+            <a class="catbar__item" href="#"><span class="catbar__icon">🎮</span><span>بازی</span></a>
+            <a class="catbar__item" href="#"><span class="catbar__icon">🎞️</span><span>فیلم</span></a>
+            <a class="catbar__item" href="#"><span class="catbar__icon">🖥️</span><span>تکنولوژی</span></a>
+            <a class="catbar__item" href="#"><span class="catbar__icon">➕</span><span>ای‌بازی پلاس</span></a>
+        </div>
+
+    </section>
+
+    <section class="section container">
+    <h2 class="section__title">پیشنهادات سردبیر</h2>
+    <div class="slider">
+        <button class="slider__btn slider__btn--prev" aria-label="قبلی">‹</button>
+        <div class="slider__track" id="sliderTrack">
+            <a class="slide" href="#"><img src="{% static 'img/slide-1.jpg' %}" alt="Slide 1"></a>
+            <a class="slide" href="#"><img src="{% static 'img/slide-2.jpg' %}" alt="Slide 2"></a>
+            <a class="slide" href="#"><img src="{% static 'img/slide-3.jpg' %}" alt="Slide 3"></a>
+            <a class="slide" href="#"><img src="{% static 'img/slide-4.jpg' %}" alt="Slide 4"></a>
+        </div>
+        <button class="slider__btn slider__btn--next" aria-label="بعدی">›</button>
+    </div>
+</section>
+
+
+    <section class="section container">
+        <h2 class="section__title">عناوین روز</h2>
+        <div class="grid-main">
+            <!-- ستون سمت چپ: لیست مطالب -->
+            <div class="grid-main__content">
+                    <article class="post">
+                        <a class="post__thumb" href="#"><img src="{% static 'img/post-gta3.jpg' %}" alt=""></a>
+                        <div class="post__body">
+                            <h3 class="post__title"><a href="#">نقشه بازی GTA 3 با راهنمای کامل</a></h3>
+                            <p class="post__meta">۱۴ دقیقه قبل</p>
+                            <p class="post__excerpt">این بازی در سال ۲۰۰۱ منتشر شد و به‌عنوان نقطه عطفی در صنعت بازی‌های
+                                ویدیویی شناخته می‌شود...</p>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <a class="post__thumb" href="#"><img src="{% static 'img/post-sora.jpg' %}" alt=""></a>
+                        <div class="post__body">
+                            <h3 class="post__title"><a href="#">هوش مصنوعی سورا ۲؛ راهنمای کامل</a></h3>
+                            <p class="post__meta">۳۳ دقیقه قبل</p>
+                            <p class="post__excerpt">ابزارهای تولید محتوای ویدیویی با سورا ۲ امکان ساخت ویدیوهای
+                                واقع‌گرایانه را فراهم می‌کنند...</p>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <a class="post__thumb" href="#"><img src="{% static 'img/post-steam.jpg' %}" alt=""></a>
+                        <div class="post__body">
+                            <h3 class="post__title"><a href="#">چطور بازی‌های مورد علاقه‌ را در لینوکس با استیم اجرا
+                                کنیم؟</a></h3>
+                            <p class="post__meta">۷ ساعت قبل</p>
+                            <p class="post__excerpt">راهنمای نصب و اجرای بازی‌ها روی لینوکس به‌صورت
+                                مرحله‌به‌مرحله...</p>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <a class="post__thumb" href="#"><img src="{% static 'img/post-raid.jpg' %}" alt=""></a>
+                        <div class="post__body">
+                            <h3 class="post__title"><a href="#">نقشه Raid در کالاف ۲۰۲۵ موبایل</a></h3>
+                            <p class="post__meta">۱۰ ساعت قبل</p>
+                            <p class="post__excerpt">تحلیل نقاط درگیری، مسیرهای امن و بهترین لوداوت‌ها برای Raid...</p>
+                        </div>
+                    </article>
+
+                    <article class="post">
+                        <a class="post__thumb" href="#"><img src="{% static 'img/post-compare.jpg' %}" alt=""></a>
+                        <div class="post__body">
+                            <h3 class="post__title"><a href="#">مقایسهٔ کامل بین استیم آنلاین و آفلاین</a></h3>
+                            <p class="post__meta">۸ ساعت قبل</p>
+                            <p class="post__excerpt">از نظر امنیت، امکانات و به‌روزرسانی بازی‌ها چه تفاوت‌هایی وجود
+                                دارد؟</p>
+                        </div>
+                    </article>
+            </div>
+
+            <!-- ستون سمت راست: تبلیغات/بنرها -->
+            <aside class="grid-main__aside">
+                <a class="adcard" href="#">
+                    <img src="{% static 'img/ad-hosting.jpg' %}" alt="میزبان فا">
+                </a>
+                <a class="adcard" href="#">
+                    <img src="{% static 'img/ad-vpn.jpg' %}" alt="ضدتحریم">
+                </a>
+                <a class="adcard" href="#">
+                    <img src="{% static 'img/ad-car.jpg' %}" alt="مدیران‌خودرو">
+                </a>
+                <a class="adcard" href="#">
+                    <img src="{% static 'img/ad-estekhdam.jpg' %}" alt="ای-استخدام">
+                </a>
+            </aside>
+        </div>
+    </section>
+
+    <section class="section container">
+        <h2 class="section__title">دوره‌های ما</h2>
+        <div class="courses">
+            <div class="courses__hero">
+                <img src="{% static 'img/courses-hero.png' %}" alt="دوره‌های گیم"/>
+                <div class="courses__label">تازه‌های بازار</div>
+            </div>
+            <ul class="courses__list">
+                <li class="courses__item">
+                    <img src="{% static 'img/mini-gta.jpg' %}" alt="">
+                    <a href="#">نقشه بازی GTA 3 با راهنمای کامل</a>
+                </li>
+                <li class="courses__item">
+                    <img src="{% static 'img/mini-linux.jpg' %}" alt="">
+                    <a href="#">چطور بازی‌ها را در لینوکس اجرا کنیم؟</a>
+                </li>
+                <li class="courses__item">
+                    <img src="{% static 'img/mini-compare.jpg' %}" alt="">
+                    <a href="#">مقایسهٔ کامل استیم آنلاین و آفلاین</a>
+                </li>
+                <li class="courses__item">
+                    <img src="{% static 'img/mini-raid.jpg' %}" alt="">
+                    <a href="#">گردونه Deepstar Wraith کالاف ۲۰۲۵</a>
+                </li>
+                <li class="courses__item">
+                    <img src="{% static 'img/mini-mask.jpg' %}" alt="">
+                    <a href="#">نقشه Raid در کالاف ۲۰۲۵ موبایل</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- بلاک مقالهٔ طولانی (متن معرفی) -->
+    <section class="section container">
+        <div class="panel">
+            <h2 class="panel__title">موسوی آکادمی | بهترین اخبار بازی‌های ویدیویی</h2>
+            <hr class="divider"/>
+            <div class="prose">
+                <p>به دنیای هیجان‌انگیز بازی‌ها، فیلم‌ها و فناوری خوش آمدید...</p>
+                <!-- اینجا متن‌های طولانی‌تر صفحه شما قرار می‌گیرند -->
+            </div>
+        </div>
+    </section>
+{% endblock %}

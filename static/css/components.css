@@ -1,0 +1,43 @@
+/* Buttons */
+.btn{
+  --btn-bg: var(--surface);
+  --btn-fg: var(--text);
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:.5rem;border:1px solid var(--border);
+  background:var(--btn-bg);color:var(--btn-fg);
+  padding:.6rem 1rem;border-radius:999px;font-weight:700;cursor:pointer;
+  transition:transform .05s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+}
+.btn:active{transform:translateY(1px)}
+.btn--icon{padding:.45rem .6rem}
+.btn--pill{border-radius:999px}
+.btn--block{display:flex;width:100%}
+.btn--primary{
+  --btn-bg: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+  border-color:transparent;box-shadow:0 8px 24px rgba(0,87,255,.25)
+}
+.btn--ghost{background:transparent}
+.btn--glass{background:rgba(255,255,255,.06);backdrop-filter: blur(6px)}
+
+/* Chips / Badges */
+.chip{
+  background:rgba(0,0,0,.4);
+  color:#ffe08a;border:1px solid rgba(255,255,255,.2);
+  padding:.3rem .6rem;border-radius:999px;font-weight:800;font-size:.8rem
+}
+
+/* Forms */
+input::placeholder{color:#7f8a98}
+input:focus{outline:2px solid rgba(46,168,255,.4);outline-offset:2px;border-color:transparent}
+
+/* Socials */
+.socials{display:flex;gap:.6rem}
+.socials__item{
+  background:var(--surface);border:1px solid var(--border);padding:.5rem .8rem;border-radius:12px
+}
+.socials__item:hover{color:var(--primary)}
+/* کارت لینک‌دار در سایدبار/لیست */
+.post:hover{border-color:#3a78ff3d}
+
+/* تیتر سکشن دوره‌ها کمی فانتزی‌تر */
+.section__title{font-size:1.35rem}

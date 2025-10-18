@@ -1,0 +1,41 @@
+:root{
+  /* رنگ‌ها (Dark UI نزدیک به طرح) */
+  --bg: #0f1113;            /* پس‌زمینه اصلی */
+  --surface: #1a1d20;       /* کارت/پنل */
+  --surface-2: #24282c;
+  --border: #2e3338;
+  --text: #e7edf3;
+  --text-dim: #aeb7c2;
+  --primary: #2ea8ff;       /* آبی فیروزه‌ای */
+  --primary-2: #0057ff;     /* آبی پررنگ دکمه */
+  --accent: #23d69b;        /* سبز سافت بنری */
+  --warning: #ffb020;
+  --danger: #ff5c72;
+
+  /* شعاع و سایه */
+  --r-lg: 22px;
+  --r-md: 14px;
+  --r-sm: 10px;
+  --shadow-1: 0 10px 30px rgba(0,0,0,.35);
+
+  /* تایپوگرافی */
+  --font-ui: "Vazirmatn", system-ui, -apple-system, Segoe UI, "Roboto", sans-serif;
+  --font-display: "Rubik", "Vazirmatn", sans-serif;
+
+  /* فاصله‌ها */
+  --space-1: .5rem;
+  --space-2: .75rem;
+  --space-3: 1rem;
+  --space-4: 1.25rem;
+  --space-5: 1.75rem;
+  --space-6: 2.25rem;
+
+  /* container */
+  --container: 1180px;
+
+  /* Breakpoints */
+  --bp-sm: 576px;
+  --bp-md: 768px;
+  --bp-lg: 992px;
+  --bp-xl: 1200px;
+}

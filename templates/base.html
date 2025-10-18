@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>{% block title %}ای‌بازی | رسانه نسل‌زد{% endblock %}</title>
+
+  <!-- فونت‌ها (جایگزین‌های نزدیک به طرح) -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&family=Rubik:wght@500;700;900&display=swap" rel="stylesheet">
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+</head>
+<body>
+
+  <!-- نوار بالا -->
+  <header class="site-header">
+    <div class="container header__inner">
+      <a class="brand" href="/">
+        <img src="{% static 'img/logo.svg' %}" alt="لوگو" class="brand__logo">
+        <span class="brand__name">موسوی اکادمی</span>
+      </a>
+
+      <nav class="nav">
+        <a href="#" class="nav__item is-active">بازی</a>
+        <a href="#" class="nav__item">فیلم</a>
+        <a href="#" class="nav__item">تکنولوژی</a>
+        <a href="#" class="nav__item">ای‌بازی پلاس</a>
+      </nav>
+
+      <div class="header__actions">
+        <form class="search">
+          <input type="search" placeholder="دنبال چی می‌گردی؟" class="search__input">
+          <button class="btn btn--ghost btn--icon" aria-label="جستجو">
+            <svg viewBox="0 0 24 24" class="icon"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="2"/></svg>
+          </button>
+        </form>
+        <a href="#" class="btn btn--pill btn--primary">
+          <span class="icon-chevron">&laquo;</span> کلیک کنید
+        </a>
+      </div>
+    </div>
+  </header>
+
+  {% block hero %}{% endblock %}
+
+  <main class="site-main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer__grid">
+      <div>
+        <h4 class="footer__title">بروزترین خبرها</h4>
+        <ul class="list-dots">
+          <li><a href="#">نقشه GTA 3</a></li>
+          <li><a href="#">Sora 2</a></li>
+          <li><a href="#">استیم روی لینوکس</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer__title">مقالات برتر</h4>
+        <ul class="list-dots">
+          <li><a href="#">مترجم گوگل</a></li>
+          <li><a href="#">دانلود کلاینت</a></li>
+          <li><a href="#">جواب بازی آمیرزا</a></li>
+        </ul>
+      </div>
+      <div class="footer__badges">
+        <img src="{% static 'img/enamad.png' %}" alt="اینماد">
+        <img src="{% static 'img/samandehi.png' %}" alt="سامانه">
+      </div>
+    </div>
+
+    <div class="container footer__bottom">
+      <div class="socials">
+        <a href="#" aria-label="تلگرام" class="socials__item">تلگرام</a>
+        <a href="#" aria-label="اینستاگرام" class="socials__item">اینستاگرام</a>
+      </div>
+      <nav class="footer__links">
+        <a href="#">درباره ما</a>
+        <a href="#">تبلیغات</a>
+        <a href="#">تماس با ما</a>
+        <a href="#">شرایط استفاده</a>
+      </nav>
+      <p class="footer__copy">© کپی مطالب تنها با مجوز کتبی امکان‌پذیر است.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
