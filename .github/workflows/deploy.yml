@@ -45,8 +45,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
 
-      # 6️⃣.1 Connect to VPS (test connection)
-      - name: Connect to VPS
+      # 6️⃣ Deploy to VPS
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -54,18 +54,30 @@ jobs:
           key: ${{ secrets.VPS_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            echo "✅ Successfully connected to VPS: $(hostname)"
-            echo "Current directory: $(pwd)"
-            echo "Logging in to Docker Hub on VPS..."
+            echo "✅ Connected to VPS: $(hostname)"
+
+            # 1️⃣ Docker Hub login
+            echo "Logging in to Docker Hub..."
             docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
 
+            # 2️⃣ Pull latest image
             echo "Pulling new image..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
 
+            # 3️⃣ Stop old container
             echo "Stopping old container..."
             docker stop mousavi || true
             docker rm mousavi || true
 
+            # 4️⃣ Collect static before running container
+            echo "Collecting static files..."
+            docker run --rm \
+              -v /home/mousavi/static:/app/staticfiles \
+              -v /home/mousavi/media:/app/media \
+              ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }} \
+              python manage.py collectstatic --noinput
+
+            # 5️⃣ Run new container
             echo "Running new container..."
             docker run -d \
               --name mousavi \
@@ -75,5 +87,6 @@ jobs:
               -v /home/mousavi/media:/app/media \
               ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
 
+            # 6️⃣ Clean old images
             echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
