@@ -51,11 +51,14 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.VPS_PASSWORD }}
+          key: ${{ secrets.VPS_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
+            echo "Logging in to Docker Hub on VPS..."
+            echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
+
             echo "Pulling new image..."
-            docker pull ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
+            docker pull ${DOCKER_USERNAME}/mousavi:${GITHUB_SHA}
 
             echo "Stopping old container..."
             docker stop mousavi || true
@@ -68,7 +71,8 @@ jobs:
               -p 8000:8000 \
               -v /home/mousavi/static:/app/staticfiles \
               -v /home/mousavi/media:/app/media \
-              ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
+              ${DOCKER_USERNAME}/mousavi:${GITHUB_SHA}
 
             echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
+      
