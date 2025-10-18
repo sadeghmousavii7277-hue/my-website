@@ -46,17 +46,12 @@ jobs:
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
-          password: ${{ secrets.VPS_PASSWORD }}
-          port: ${{ secrets.VPS_PORT }}
+          key: ${{ secrets.VPS_PASSWORD }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
-            echo "Pulling new image..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
-
-            echo "Stopping old container..."
             docker stop mousavi || true
             docker rm mousavi || true
-
-            echo "Running new container..."
             docker run -d \
               --name mousavi \
               --restart unless-stopped \
@@ -64,6 +59,4 @@ jobs:
               -v /home/mousavi/static:/app/staticfiles \
               -v /home/mousavi/media:/app/media \
               ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
-
-            echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
