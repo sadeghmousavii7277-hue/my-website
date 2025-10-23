@@ -56,28 +56,35 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             echo "✅ Connected to VPS: $(hostname)"
-
+      
             # 1️⃣ Docker Hub login
             echo "Logging in to Docker Hub..."
             docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
-
+      
             # 2️⃣ Pull latest image
             echo "Pulling new image..."
             docker pull ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
-
+      
             # 3️⃣ Stop old container
             echo "Stopping old container..."
             docker stop mousavi || true
             docker rm mousavi || true
-
-            # 4️⃣ Collect static before running container
+      
+            # 4️⃣ Collect static inside a temporary container
             echo "Collecting static files..."
             docker run --rm \
               -v /home/mousavi/static:/app/staticfiles \
               -v /home/mousavi/media:/app/media \
               ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }} \
               python manage.py collectstatic --noinput
-
+      
+            # 4️⃣ Copy static from container to host folder for Nginx
+            echo "Copying static files to host..."
+            docker run --rm \
+              -v /home/mousavi/static:/app/staticfiles \
+              ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }} \
+              /bin/bash -c "cp -r /app/staticfiles/. /app/staticfiles/"
+      
             # 5️⃣ Run new container
             echo "Running new container..."
             docker run -d \
@@ -87,7 +94,7 @@ jobs:
               -v /home/mousavi/static:/app/staticfiles \
               -v /home/mousavi/media:/app/media \
               ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
-
+      
             # 6️⃣ Clean old images
             echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
