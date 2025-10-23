@@ -12,3 +12,4 @@ services:
       - DEBUG=False
     command: ["gunicorn", "mousavi.wsgi:application", "--bind", "0.0.0.0:8000"]
     restart: unless-stopped
+
