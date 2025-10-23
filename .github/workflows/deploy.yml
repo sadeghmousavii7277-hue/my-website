@@ -91,4 +91,3 @@ jobs:
             # 6️⃣ Clean old images
             echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
-
