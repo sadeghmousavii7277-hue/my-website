@@ -1,26 +1,14 @@
 version: '3'
 services:
   web:
-    image: ${DOCKER_USERNAME}/mousavi:latest  # استفاده از تگ 'latest' برای آخرین نسخه تصویر
+    image: ${DOCKER_USERNAME}/mousavi:latest
     container_name: mousavi
-    volumes:
-      - /home/mousavi/staticfiles:/app/staticfiles   # مپ کردن مسیر استاتیک‌ها به داخل کانتینر
-      - /home/mousavi/media:/app/media               # مپ کردن مسیر مدیا به داخل کانتینر
-    ports:
-      - "8000:8000"                                  # پورت 8000 از کانتینر به هاست متصل می‌شود
-    environment:
-      - DEBUG=False                                  # تنظیمات محیطی
-    command: ["gunicorn", "mousavi.wsgi:application", "--bind", "0.0.0.0:8000"]
-    restart: unless-stopped  # کانتینر در صورت توقف به طور خودکار ری‌استارت می‌شود
-
-  nginx:
-    image: nginx:latest
-    container_name: nginx
     volumes:
       - /home/mousavi/staticfiles:/app/staticfiles
       - /home/mousavi/media:/app/media
-      - ./nginx.conf:/etc/nginx/nginx.conf  # فایل کانفیگ Nginx که باید در ریشه پروژه شما باشد
     ports:
-      - "80:80"   # سرو کردن فایل‌های استاتیک از پورت 80
-    depends_on:
-      - web  # Nginx باید پس از سرویس Django راه‌اندازی شود
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+    command: ["gunicorn", "mousavi.wsgi:application", "--bind", "0.0.0.0:8000"]
+    restart: unless-stopped
