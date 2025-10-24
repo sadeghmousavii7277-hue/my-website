@@ -309,7 +309,7 @@ img{max-width:100%;display:block}
     padding: 0;
     overflow: visible;
     margin-inline-start: auto;
-    gap: 0;
+    gap: .5rem; /* کاهش فاصله بین آیتم‌های منو در دسکتاپ */
   }
   .nav a.nav__item, .nav__item--dropdown {
     /* تنظیم استایل‌های دسکتاپ */
@@ -326,10 +326,21 @@ img{max-width:100%;display:block}
     display: flex;
     align-items: center;
     gap: .25rem;
+
+    /* ======== استایل‌های قاب جدید ======== */
+    border: 1px solid var(--border); /* خط دور */
+    border-radius: var(--r-md); /* گرد کردن لبه‌ها */
+    background: var(--surface); /* رنگ پس‌زمینه */
+    transition: all 0.2s ease; /* انیمیشن برای هاور */
+    /* ==================================== */
   }
+
+  /* استایل هاور برای آیتم‌های اصلی دارای قاب */
   .nav a.nav__item:hover, .nav__item--dropdown:hover > a {
-    /* اضافه کردن نوار آبی زیر آیتم اصلی در هاور */
-    box-shadow: inset 0 -3px 0 0 var(--primary);
+    box-shadow: 0 0 10px rgba(0, 136, 255, 0.3); /* سایه آبی کم‌رنگ */
+    border-color: var(--primary); /* رنگ آبی برای قاب */
+    color: var(--primary); /* رنگ متن آبی */
+    transform: translateY(-2px); /* کمی به بالا حرکت کند */
     opacity: 1;
   }
 
