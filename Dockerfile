@@ -29,3 +29,4 @@ RUN python manage.py collectstatic --noinput
 
 # 9️⃣ اجرای Gunicorn
 CMD ["gunicorn", "mousavi.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+
