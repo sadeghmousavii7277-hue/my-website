@@ -4,18 +4,15 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>{% block title %}ای‌بازی | رسانه نسل‌زد{% endblock %}</title>
+  <title>{% block title %}موسوی اکادمی{% endblock %}</title>
 
-  <!-- فونت‌ها (جایگزین‌های نزدیک به طرح) -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&family=Rubik:wght@500;700;900&display=swap" rel="stylesheet">
-  <!-- CSS -->
   <link rel="stylesheet" href="{% static 'css/variables.css' %}">
   <link rel="stylesheet" href="{% static 'css/layout.css' %}">
   <link rel="stylesheet" href="{% static 'css/components.css' %}">
 </head>
 <body>
 
-  <!-- نوار بالا -->
   <header class="site-header">
     <div class="container header__inner">
       <a class="brand" href="/">
@@ -23,13 +20,51 @@
         <span class="brand__name">موسوی اکادمی</span>
       </a>
 
-      <nav class="nav">
-        <a href="#" class="nav__item is-active">بازی</a>
-        <a href="#" class="nav__item">فیلم</a>
-        <a href="#" class="nav__item">تکنولوژی</a>
-        <a href="#" class="nav__item">ای‌بازی پلاس</a>
-      </nav>
+      <nav class="nav" id="mobileNav">
 
+        <div class="nav__item nav__item--dropdown">
+            <a href="javascript:void(0);">آموزش <span class="nav__chevron">▾</span></a>
+            <div class="nav__dropdown">
+                <a href="#">دوره صفر تا صد فارکس</a>
+                <a href="#">دوره اسمارت مانی</a>
+            </div>
+        </div>
+
+        <div class="nav__item nav__item--dropdown">
+            <a href="javascript:void(0);">کانال سیگنال <span class="nav__chevron">▾</span></a>
+            <div class="nav__dropdown">
+                <a href="#">سیگنال فارکس</a>
+                <a href="#">سیگنال کریپتو</a>
+            </div>
+        </div>
+
+        <div class="nav__item nav__item--dropdown">
+            <a href="javascript:void(0);">بروکر و صرافی <span class="nav__chevron">▾</span></a>
+            <div class="nav__dropdown">
+                <a href="#">بروکر های فارکس</a>
+                <a href="#">صرافی های ارز دیجیتال</a>
+                <a href="#">مقایسه بروکر ها</a>
+                <a href="#">مقایسه صرافی ها</a>
+            </div>
+        </div>
+
+        <div class="nav__item nav__item--dropdown">
+            <a href="javascript:void(0);">ابزار معاملاتی <span class="nav__chevron">▾</span></a>
+            <div class="nav__dropdown">
+                <a href="#">اندیکاتور تریدینگ ویو</a>
+                <a href="#">اندیکاتور متاتریدر ۴</a>
+                <a href="#">اندیکاتور متاتریدر ۵</a>
+                <a href="#">ماشین حساب فارکس</a>
+                <a href="#">شاخص ترس و طمع کریپتو</a>
+                <a href="#">اکسپرت های متاتریدر</a>
+            </div>
+        </div>
+
+        <a href="#" class="nav__item" rel="noopener noreferrer">کتاب ها و جزوه ها</a>
+
+        <a href="#" class="nav__item" rel="noopener noreferrer">استراتژی</a>
+
+      </nav>
       <div class="header__actions">
         <form class="search">
           <input type="search" placeholder="دنبال چی می‌گردی؟" class="search__input">
@@ -41,6 +76,13 @@
           <span class="icon-chevron">&laquo;</span> کلیک کنید
         </a>
       </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileNav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+
     </div>
   </header>
 
