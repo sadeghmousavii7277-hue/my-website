@@ -1,21 +1,22 @@
 // اسلایدر افقی بسیار ساده
-(function(){
+(function() {
   const track = document.getElementById('sliderTrack');
-  if(!track) return;
+  if (!track) return;
 
   const prev = document.querySelector('.slider__btn--prev');
   const next = document.querySelector('.slider__btn--next');
 
   const step = () => track.clientWidth * 0.8;
 
-  prev?.addEventListener('click', () => track.scrollBy({left: -step(), behavior: 'smooth'}));
-  next?.addEventListener('click', () => track.scrollBy({left:  step(), behavior: 'smooth'}));
+  prev?.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+  next?.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
 
   // اسکرول خودکار
-  let auto = setInterval(()=> track.scrollBy({left: step(), behavior:'smooth'}), 4000);
-  track.addEventListener('mouseenter', ()=> clearInterval(auto));
-  track.addEventListener('mouseleave', ()=> auto = setInterval(()=> track.scrollBy({left: step(), behavior:'smooth'}), 4000));
+  let auto = setInterval(() => track.scrollBy({ left: step(), behavior: 'smooth' }), 4000);
+  track.addEventListener('mouseenter', () => clearInterval(auto));
+  track.addEventListener('mouseleave', () => auto = setInterval(() => track.scrollBy({ left: step(), behavior: 'smooth' }), 4000));
 })();
+
 
 /* ========== مدیریت منوی موبایل (جدید) ========== */
 (function() {
@@ -60,6 +61,16 @@
         }
       }
     });
+  });
+
+  // برای بستن زیرمنوها اگر سایز صفحه بزرگتر شد (حالت دسکتاپ)
+  window.addEventListener('resize', () => {
+      if (window.innerWidth > 992) {
+          navMenu.querySelectorAll('.nav__item--dropdown.is-open').forEach(openItem => {
+              openItem.classList.remove('is-open');
+              openItem.querySelector('.nav__dropdown').classList.remove('is-open');
+          });
+      }
   });
 
 })();

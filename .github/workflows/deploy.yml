@@ -94,7 +94,12 @@ jobs:
               -v /home/mousavi/static:/app/staticfiles \
               -v /home/mousavi/media:/app/media \
               ${{ secrets.DOCKER_USERNAME }}/mousavi:${{ github.sha }}
-      
-            # 6️⃣ Clean old images
+            
+            # 6️⃣ RELOAD NGINX - بارگذاری مجدد فایل‌های استاتیک
+            echo "Reloading Nginx to serve new static files..."
+            sudo systemctl reload nginx 
+            # اگر reload کار نکرد از restart استفاده کنید: sudo systemctl restart nginx
+            
+            # 7️⃣ Clean old images
             echo "Cleaning up old images..."
             docker image prune -af --filter "until=24h"
