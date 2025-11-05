@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark"> <head>
+<html lang="fa" dir="rtl" class="dark">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="{% static 'assets/images/favicon.svg' %}" />
@@ -11,6 +12,35 @@
     <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/app.css' %}" />
 
+    <style>
+        .video-section {
+            padding: 48px 16px;
+        }
+        .video-grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .video-card {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #444;
+        }
+        .video-card video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .video-grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
     {% comment %} این بلاک به صفحات فرزند (مثل home.html) اجازه می‌دهد عنوان صفحه را بازنویسی کنند {% endcomment %}
     <title>قالب آموزشی نابغه - {% block title %}صفحه اصلی{% endblock %}</title>
 </head>
