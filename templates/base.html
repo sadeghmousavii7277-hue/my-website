@@ -1,133 +1,47 @@
 {% load static %}
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>{% block title %}موسوی اکادمی{% endblock %}</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&family=Rubik:wght@500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/variables.css' %}">
-  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
-  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="{% static 'assets/images/favicon.svg' %}" />
+
+    {% comment %} فایل‌های CSS با تگ static بارگذاری می‌شوند {% endcomment %}
+    <link rel="stylesheet" href="{% static 'assets/css/dependencies/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/dependencies/plyr.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/app.css' %}" />
+
+    {% comment %} این بلاک به صفحات فرزند (مثل home.html) اجازه می‌دهد عنوان صفحه را بازنویسی کنند {% endcomment %}
+    <title>قالب آموزشی نابغه - {% block title %}صفحه اصلی{% endblock %}</title>
 </head>
+
 <body>
 
-  <header class="site-header">
-    <div class="container header__inner">
-      <a class="brand" href="/">
-        <img src="{% static 'img/logo.svg' %}" alt="لوگو" class="brand__logo">
-        <span class="brand__name">موسوی اکادمی</span>
-      </a>
+    <div class="flex flex-col min-h-screen bg-background">
 
-      <nav class="nav" id="mobileNav">
+        {% comment %} هدر در اینجا include می‌شود {% endcomment %}
+        {% include 'partials/_header.html' %}
 
-        <div class="nav__item nav__item--dropdown">
-            <a href="javascript:void(0);">آموزش <span class="nav__chevron">▾</span></a>
-            <div class="nav__dropdown">
-                <a href="#">دوره صفر تا صد فارکس</a>
-                <a href="#">دوره اسمارت مانی</a>
-            </div>
-        </div>
+        {% comment %} محتوای اصلی و متغیر هر صفحه در این بلاک قرار می‌گیرد {% endcomment %}
+        {% block content %}
+        {% endblock content %}
 
-        <div class="nav__item nav__item--dropdown">
-            <a href="javascript:void(0);">کانال سیگنال <span class="nav__chevron">▾</span></a>
-            <div class="nav__dropdown">
-                <a href="#">سیگنال فارکس</a>
-                <a href="#">سیگنال کریپتو</a>
-            </div>
-        </div>
-
-        <div class="nav__item nav__item--dropdown">
-            <a href="javascript:void(0);">بروکر و صرافی <span class="nav__chevron">▾</span></a>
-            <div class="nav__dropdown">
-                <a href="#">بروکر های فارکس</a>
-                <a href="#">صرافی های ارز دیجیتال</a>
-                <a href="#">مقایسه بروکر ها</a>
-                <a href="#">مقایسه صرافی ها</a>
-            </div>
-        </div>
-
-        <div class="nav__item nav__item--dropdown">
-            <a href="javascript:void(0);">ابزار معاملاتی <span class="nav__chevron">▾</span></a>
-            <div class="nav__dropdown">
-                <a href="#">اندیکاتور تریدینگ ویو</a>
-                <a href="#">اندیکاتور متاتریدر ۴</a>
-                <a href="#">اندیکاتور متاتریدر ۵</a>
-                <a href="#">ماشین حساب فارکس</a>
-                <a href="#">شاخص ترس و طمع کریپتو</a>
-                <a href="#">اکسپرت های متاتریدر</a>
-            </div>
-        </div>
-
-        <a href="#" class="nav__item" rel="noopener noreferrer">کتاب ها و جزوه ها</a>
-
-        <a href="#" class="nav__item" rel="noopener noreferrer">استراتژی</a>
-
-      </nav>
-      <div class="header__actions">
-        <form class="search">
-          <input type="search" placeholder="دنبال چی می‌گردی؟" class="search__input">
-          <button class="btn btn--ghost btn--icon" aria-label="جستجو">
-            <svg viewBox="0 0 24 24" class="icon"><circle cx="11" cy="11" r="7" stroke="currentColor" fill="none" stroke-width="2"/><path d="M20 20l-3.2-3.2" stroke="currentColor" stroke-width="2"/></svg>
-          </button>
-        </form>
-      </div>
-
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mobileNav">
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-        <span class="nav-toggle__bar"></span>
-      </button>
+        {% comment %} فوتر در اینجا include می‌شود {% endcomment %}
+        {% include 'partials/_footer.html' %}
 
     </div>
-  </header>
 
-  {% block hero %}{% endblock %}
+    {% comment %} فایل‌های JS با تگ static بارگذاری می‌شوند {% endcomment %}
+    <script src="{% static 'assets/js/dependencies/alpinejs.min.js' %}"></script>
+    <script src="{% static 'assets/js/dependencies/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/dependencies/plyr.min.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
 
-  <main class="site-main">
-    {% block content %}{% endblock %}
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer__grid">
-      <div>
-        <h4 class="footer__title">بروزترین خبرها</h4>
-        <ul class="list-dots">
-          <li><a href="#">نقشه GTA 3</a></li>
-          <li><a href="#">Sora 2</a></li>
-          <li><a href="#">استیم روی لینوکس</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="footer__title">مقالات برتر</h4>
-        <ul class="list-dots">
-          <li><a href="#">مترجم گوگل</a></li>
-          <li><a href="#">دانلود کلاینت</a></li>
-          <li><a href="#">جواب بازی آمیرزا</a></li>
-        </ul>
-      </div>
-      <div class="footer__badges">
-        <img src="{% static 'img/enamad.png' %}" alt="اینماد">
-        <img src="{% static 'img/samandehi.png' %}" alt="سامانه">
-      </div>
-    </div>
-
-    <div class="container footer__bottom">
-      <div class="socials">
-        <a href="#" aria-label="تلگرام" class="socials__item">تلگرام</a>
-        <a href="#" aria-label="اینستاگرام" class="socials__item">اینستاگرام</a>
-      </div>
-      <nav class="footer__links">
-        <a href="#">درباره ما</a>
-        <a href="#">تبلیغات</a>
-        <a href="#">تماس با ما</a>
-        <a href="#">شرایط استفاده</a>
-      </nav>
-      <p class="footer__copy">© کپی مطالب تنها با مجوز کتبی امکان‌پذیر است.</p>
-    </div>
-  </footer>
-
-  <script src="{% static 'js/main.js' %}"></script>
+    {% comment %} این بلاک برای اسکریپت‌های اختصاصی هر صفحه (در صورت نیاز) است {% endcomment %}
+    {% block scripts %}
+    {% endblock scripts %}
 </body>
+
 </html>
