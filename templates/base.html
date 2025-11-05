@@ -1,8 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
-
-<head>
+<html lang="fa" dir="rtl" class="dark"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="{% static 'assets/images/favicon.svg' %}" />
@@ -37,11 +35,16 @@
     <script src="{% static 'assets/js/dependencies/alpinejs.min.js' %}"></script>
     <script src="{% static 'assets/js/dependencies/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/dependencies/plyr.min.js' %}"></script>
-    <script src="{% static 'assets/js/app.js' %}"></script>
 
+    <script src="{% static 'assets/js/app.js' %}"></script> <script>
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    </script>
     {% comment %} این بلاک برای اسکریپت‌های اختصاصی هر صفحه (در صورت نیاز) است {% endcomment %}
     {% block scripts %}
     {% endblock scripts %}
+
+
 </body>
 
 </html>
