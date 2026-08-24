@@ -1,0 +1,18 @@
+.course-card {
+    height: 370px;                /* ارتفاع ثابت برای همه کارت‌ها */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);  /* افکت ظریف هاور */
+}
+
+.course-img {
+    width: 100%;
+    height: 200px;                /* همه عکس‌ها یک اندازه */
+    object-fit: cover;            /* برای جلوگیری از کشیدگی */
+    border-radius: 12px;
+}

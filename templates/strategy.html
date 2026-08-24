@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}استراتژی{% endblock %}
+
+{% block content %}
+<main class="flex-auto py-10">
+    <div class="max-w-7xl px-4 mx-auto space-y-10">
+        
+        <div class="flex flex-col items-center justify-center space-y-4 text-center mb-10">
+            <h1 class="font-black text-3xl text-primary">استراتژی</h1>
+            <p class="text-muted text-sm max-w-2xl">
+                در این بخش می‌توانید به بهترین و کاربردی‌ترین استراتژی ها دسترسی داشته باشید.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+            
+            {% for strategy in strategies %}
+            <div class="bg-secondary rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border flex flex-col h-full">
+                <a href="{% url 'strategy_single' strategy.id %}" class="block overflow-hidden relative group">
+                    {% if strategy.image %}
+                    <img src="{{ strategy.image.url }}" alt="{{ strategy.title }}" class="w-full h-56 object-cover rounded-t-xl transition-transform duration-500 group-hover:scale-110">
+                    {% else %}
+                    <div class="w-full h-56 bg-gray-200 flex items-center justify-center rounded-t-xl"><span class="text-gray-400">بدون تصویر</span></div>
+                    {% endif %}
+                </a>
+                <div class="p-5 space-y-3 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-foreground mb-2">
+                            <a href="{% url 'strategy_single' strategy.id %}" class="transition-colors hover:text-primary">{{ strategy.title }}</a>
+                        </h3>
+                        <p class="text-sm text-muted leading-relaxed line-clamp-3">
+                            {{ strategy.description }}
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-border mt-4">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'strategy_single' strategy.id %}" class="flex items-center justify-center w-full py-2 bg-primary text-primary-foreground rounded-lg font-bold transition-all hover:bg-primary/90 shadow-md shadow-primary/20 hover:shadow-primary/40">
+                            مشاهده و دانلود
+                        </a>
+                        {% else %}
+                        <a href="javascript:void(0)" onclick="openAuthModal('register')" class="flex items-center justify-center w-full py-2 bg-primary text-primary-foreground rounded-lg font-bold transition-all hover:bg-primary/90 shadow-md shadow-primary/20 hover:shadow-primary/40">
+                            مشاهده و دانلود
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center text-muted py-10">
+                هیچ استراتژی یافت نشد.
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</main>
+{% endblock content %}

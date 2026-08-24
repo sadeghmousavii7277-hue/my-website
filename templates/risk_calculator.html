@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ماشین حساب مدیریت ریسک فارکس و ارز دیجیتال | سید موسوی{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="با استفاده از ماشین حساب مدیریت ریسک آنلاین، حجم دقیق و مناسب برای معاملات خود در بازارهای فارکس و ارز دیجیتال را محاسبه کنید و جلوی ضررهای سنگین را بگیرید.">
+<meta name="keywords" content="ماشین حساب مدیریت ریسک, ماشین حساب حجم معامله, محاسبه حجم فارکس, مدیریت سرمایه, مدیریت ریسک, لات سایز">
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
+<!-- Schema.org for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ماشین حساب مدیریت ریسک فارکس",
+  "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+  "description": "ابزاری آنلاین برای محاسبه دقیق حجم معامله و مدیریت سرمایه در بازارهای مالی بر اساس میزان ریسک و حد ضرر.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "inLanguage": "fa-IR"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="flex-auto py-5" dir="rtl">
+    <div class="space-y-14">
+        <div class="max-w-7xl space-y-14 px-4 mx-auto">
+            <div class="forex-course-card">
+                <div class="forex-card-overlay">
+                    
+                    <div class="forex-header">
+                        <h1>ماشین حساب مدیریت ریسک <span class="forex-symbol">فارکس و کریپتو</span></h1>
+                        <p class="forex-tagline">محاسبه دقیق حجم معامله و لات سایز</p>
+                        <p class="forex-promise">مهم‌ترین تفاوت بین یک تریدر حرفه‌ای و یک مبتدی، در مدیریت سرمایه و ریسک است. استفاده از ماشین حساب مدیریت ریسک به شما کمک می‌کند تا احساسات را کنترل کرده و هرگز بیش از توان تحمل خود ریسک نکنید.</p>
+                    </div>
+
+                <!-- Calculator Form & Results -->
+                <div class="bg-background border border-secondary rounded-2xl p-6 shadow-xl w-full mt-6 mb-16">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Form -->
+                        <div class="space-y-5">
+                            <!-- Account Currency -->
+                            <div>
+                                <label class="block text-sm text-muted font-bold mb-2">ارز پایه حساب (Account Currency)</label>
+                                <select id="calc-currency" class="w-full bg-secondary border border-secondary !text-white rounded-lg p-3 outline-none focus:border-primary transition-colors" style="background-color: var(--secondary); color: #ffffff !important;">
+                                    <option value="USD">USD - دلار آمریکا</option>
+                                    <option value="EUR">EUR - یورو</option>
+                                    <option value="GBP">GBP - پوند انگلیس</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Account Balance -->
+                            <div>
+                                <label class="block text-sm text-muted font-bold mb-2">موجودی حساب (Account Balance)</label>
+                                <input type="number" id="calc-balance" placeholder="مثلاً 1000" class="w-full bg-secondary border border-secondary !text-white rounded-lg p-3 outline-none focus:border-primary transition-colors" dir="ltr" style="background-color: var(--secondary); color: #ffffff !important;">
+                            </div>
+
+                            <!-- Risk -->
+                            <div>
+                                <label class="block text-sm text-muted font-bold mb-2 flex justify-between items-center">
+                                    <span>ریسک (Risk)</span>
+                                    <div class="flex bg-background border border-secondary rounded-lg p-1 text-xs">
+                                        <button type="button" id="risk-type-pct" class="px-3 py-1 rounded bg-primary text-primary-foreground font-bold transition-all">درصد (%)</button>
+                                        <button type="button" id="risk-type-amt" class="px-3 py-1 rounded text-muted hover:text-white transition-all">مبلغ ($)</button>
+                                    </div>
+                                </label>
+                                <input type="number" id="calc-risk" placeholder="مثلاً 1 یا 2" class="w-full bg-secondary border border-secondary !text-white rounded-lg p-3 outline-none focus:border-primary transition-colors" dir="ltr" style="background-color: var(--secondary); color: #ffffff !important;">
+                            </div>
+
+                            <!-- Stop Loss -->
+                            <div>
+                                <label class="block text-sm text-muted font-bold mb-2">حد ضرر (Stop Loss in Pips)</label>
+                                <input type="number" id="calc-sl" placeholder="مثلاً 20" class="w-full bg-secondary border border-secondary !text-white rounded-lg p-3 outline-none focus:border-primary transition-colors" dir="ltr" style="background-color: var(--secondary); color: #ffffff !important;">
+                            </div>
+
+                            <!-- Currency Pair -->
+                            <div>
+                                <label class="block text-sm text-muted font-bold mb-2">جفت‌ارز (Currency Pair)</label>
+                                <select id="calc-pair" class="w-full bg-secondary border border-secondary !text-white rounded-lg p-3 outline-none focus:border-primary transition-colors" dir="ltr" style="background-color: var(--secondary); color: #ffffff !important;">
+                                    <option value="EURUSD">EUR/USD</option>
+                                    <option value="GBPUSD">GBP/USD</option>
+                                    <option value="AUDUSD">AUD/USD</option>
+                                    <option value="USDJPY">USD/JPY</option>
+                                    <option value="USDCAD">USD/CAD</option>
+                                    <option value="USDCHF">USD/CHF</option>
+                                </select>
+                            </div>
+
+                            <button id="calc-btn" class="w-full bg-primary text-primary-foreground font-bold text-lg rounded-lg py-4 hover:opacity-80 transition-colors mt-4">
+                                محاسبه حجم معامله
+                            </button>
+                        </div>
+
+                        <!-- Results -->
+                        <div class="bg-secondary rounded-xl p-6 flex flex-col justify-center border border-secondary relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
+                            <h3 class="text-xl font-bold text-foreground mb-6 border-b border-background pb-4">نتیجه محاسبه</h3>
+                            
+                            <div class="space-y-6 z-10">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-muted font-bold">مبلغ دقیق ریسک:</span>
+                                    <span id="res-risk-amt" class="text-2xl font-black text-foreground" dir="ltr">0.00</span>
+                                </div>
+                                
+                                <div class="flex justify-between items-center bg-background p-4 rounded-lg border border-primary/30">
+                                    <span class="text-foreground font-bold">حجم استاندارد (Lots):</span>
+                                    <span id="res-lots" class="text-3xl font-black text-primary drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]" dir="ltr">0.00</span>
+                                </div>
+
+                                <div class="flex justify-between items-center">
+                                    <span class="text-muted font-bold">تعداد واحد (Units):</span>
+                                    <span id="res-units" class="text-xl font-bold text-foreground" dir="ltr">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="styled-box success-box">
+                        <div class="box-title success-title"><span>🎯</span> چگونه از ماشین حساب استفاده کنیم؟</div>
+                        <ul class="benefits-list">
+                            <li><span class="check-mark success-icon">✅</span><div><strong class="success-text">موجودی حساب:</strong><p>کل سرمایه‌ای که در حساب معاملاتی خود دارید را به دلار وارد کنید.</p></div></li>
+                            <li><span class="check-mark success-icon">✅</span><div><strong class="success-text">درصد ریسک:</strong><p>مقداری از سرمایه که حاضر هستید در یک معامله از دست بدهید (توصیه می‌شود بین 0.5 تا 2 درصد باشد).</p></div></li>
+                            <li><span class="check-mark success-icon">✅</span><div><strong class="success-text">حد ضرر:</strong><p>فاصله نقطه ورود شما تا حد ضرر بر اساس پیپ.</p></div></li>
+                        </ul>
+                    </div>
+
+                    <div class="styled-box warning-box">
+                        <div class="box-title warning-title"><span>⚠️</span> سوالات متداول (FAQ)</div>
+                        <div class="differences-list">
+                            <div class="diff-item"><span class="diff-icon warning-icon">✦</span><div><strong class="warning-text">درصد ریسک منطقی چقدر است؟</strong> اکثر تریدرهای حرفه‌ای در هر معامله تنها بین 1 تا 2 درصد از کل سرمایه خود را ریسک می‌کنند. این کار باعث می‌شود حتی با چندین باخت متوالی، حساب شما در امان بماند.</div></div>
+                            <div class="diff-item"><span class="diff-icon warning-icon">✦</span><div><strong class="warning-text">ارزش هر پیپ را از کجا پیدا کنم؟</strong> در نرم‌افزارهای متاتریدر یا cTrader می‌توانید با بررسی مشخصات نماد (Symbol Properties) ارزش پیپ را مشاهده کنید. به طور معمول برای جفت‌ارزهای اصلی این مقدار 10 است.</div></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<style>
+    .forex-course-card {
+        position: relative;
+        border-radius: 32px;
+        margin: 1rem 0;
+        width: 100%;
+        background-color: #000000;
+        background-image: url('{% static "assets/images/broker.png" %}');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        min-height: 900px;
+        overflow: hidden;
+    }
+    .forex-card-overlay {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 3rem 2rem;
+        width: 100%;
+        min-height: 900px;
+        border-radius: 32px;
+    }
+    .forex-header {
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 2rem;
+        margin-bottom: 4rem;
+    }
+    .forex-header h1 {
+        font-size: 2rem;
+        color: #ffffff;
+        letter-spacing: -0.3px;
+        margin-bottom: 1rem;
+        font-weight: 900;
+    }
+    .forex-symbol {
+        color: #f59e0b; /* amber-500 */
+        text-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+    }
+    .forex-tagline {
+        color: #f59e0b;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+    .forex-promise {
+        color: #e0e0e0;
+        margin-top: 1.2rem;
+        line-height: 1.8;
+        font-size: 1.05rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Box Styles */
+    .styled-box {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 4rem auto;
+        max-width: 900px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+    }
+    .styled-box:hover {
+        transform: translateY(-5px);
+    }
+    .box-title {
+        display: flex;
+        gap: 0.8rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        font-size: 1.35rem;
+        align-items: center;
+    }
+    .styled-box p {
+        color: #ffffff;
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    .success-box {
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+    }
+    .success-title { color: #34d399; }
+    .success-icon { color: #34d399; }
+    .success-text { color: #34d399; }
+
+    .warning-box {
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+    }
+    .warning-title { color: #fbbf24; }
+    .warning-icon { color: #fbbf24; }
+    .warning-text { color: #fbbf24; }
+
+    .benefits-list {
+        list-style: none;
+    }
+    .benefits-list li {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    .check-mark {
+        font-size: 1.2rem;
+        min-width: 1.8rem;
+    }
+    .benefits-list li strong {
+        font-size: 1.1rem;
+    }
+    .benefits-list li p {
+        color: #ddd;
+        font-size: 0.95rem;
+        margin-top: 0.4rem;
+        line-height: 1.6;
+    }
+    
+    .differences-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    .diff-item {
+        display: flex;
+        gap: 1rem;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        color: #ffffff;
+        line-height: 1.6;
+    }
+    .diff-item:last-child {
+        border-bottom: none;
+    }
+    .diff-icon {
+        font-size: 1.2rem;
+        min-width: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .forex-card-overlay {
+            padding: 2rem 1.2rem;
+        }
+        .forex-header h1 {
+            font-size: 1.6rem;
+        }
+        .styled-box {
+            padding: 1.5rem;
+            margin: 3rem 0;
+        }
+        .box-title {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // State
+        let riskType = 'percentage';
+
+        // Elements
+        const btnPct = document.getElementById('risk-type-pct');
+        const btnAmt = document.getElementById('risk-type-amt');
+        
+        const inpCurrency = document.getElementById('calc-currency');
+        const inpBalance = document.getElementById('calc-balance');
+        const inpRisk = document.getElementById('calc-risk');
+        const inpSl = document.getElementById('calc-sl');
+        const inpPair = document.getElementById('calc-pair');
+        const btnCalc = document.getElementById('calc-btn');
+
+        const resRiskAmt = document.getElementById('res-risk-amt');
+        const resLots = document.getElementById('res-lots');
+        const resUnits = document.getElementById('res-units');
+
+        // Static approx rates
+        const rates = {
+            'EURUSD': 1.09,
+            'GBPUSD': 1.27,
+            'AUDUSD': 0.66,
+            'USDJPY': 150.00,
+            'USDCAD': 1.35,
+            'USDCHF': 0.88
+        };
+
+        // Toggle logic
+        btnPct.addEventListener('click', () => {
+            riskType = 'percentage';
+            btnPct.className = 'px-3 py-1 rounded bg-primary text-primary-foreground font-bold transition-all';
+            btnAmt.className = 'px-3 py-1 rounded text-muted hover:text-foreground transition-all';
+            inpRisk.placeholder = 'مثلاً 1 یا 2';
+        });
+
+        btnAmt.addEventListener('click', () => {
+            riskType = 'amount';
+            btnAmt.className = 'px-3 py-1 rounded bg-primary text-primary-foreground font-bold transition-all';
+            btnPct.className = 'px-3 py-1 rounded text-muted hover:text-foreground transition-all';
+            inpRisk.placeholder = 'مثلاً 50';
+        });
+
+        const isUserAuthenticated = {{ user.is_authenticated|yesno:"true,false" }};
+
+        // Calculate
+        btnCalc.addEventListener('click', () => {
+            if (!isUserAuthenticated) {
+                if (typeof window.openAuthModal === 'function') {
+                    window.openAuthModal('register');
+                }
+                return;
+            }
+
+            const balance = parseFloat(inpBalance.value);
+            const riskVal = parseFloat(inpRisk.value);
+            const slPips = parseFloat(inpSl.value);
+            const pair = inpPair.value;
+            const accountCurr = inpCurrency.value;
+
+            if(!balance || !riskVal || !slPips) {
+                alert('لطفاً همه فیلدها را پر کنید.');
+                return;
+            }
+
+            let riskAmount = 0;
+            if(riskType === 'percentage') {
+                riskAmount = balance * (riskVal / 100);
+            } else {
+                riskAmount = riskVal;
+            }
+
+            const quoteCurr = pair.substring(3, 6);
+            let pipValueInQuote = (quoteCurr === 'JPY') ? 1000 : 10;
+
+            let pipValueInAcc = pipValueInQuote;
+            
+            let pipValueInUSD = pipValueInQuote;
+            if(quoteCurr !== 'USD') {
+                if(pair === 'USDJPY' || pair === 'USDCAD' || pair === 'USDCHF') {
+                    pipValueInUSD = pipValueInQuote / rates[pair];
+                }
+            }
+
+            if(accountCurr === 'USD') {
+                pipValueInAcc = pipValueInUSD;
+            } else if (accountCurr === 'EUR') {
+                pipValueInAcc = pipValueInUSD / rates['EURUSD'];
+            } else if (accountCurr === 'GBP') {
+                pipValueInAcc = pipValueInUSD / rates['GBPUSD'];
+            }
+
+            let lotSize = riskAmount / (slPips * pipValueInAcc);
+            const units = Math.round(lotSize * 100000);
+
+            const currencySymbols = { 'USD': '$', 'EUR': '€', 'GBP': '£' };
+            const sym = currencySymbols[accountCurr] || '';
+
+            resRiskAmt.innerText = `${sym}${riskAmount.toFixed(2)}`;
+            resLots.innerText = lotSize.toFixed(2);
+            resUnits.innerText = units.toLocaleString();
+        });
+    });
+</script>
+{% endblock %}

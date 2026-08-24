@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}تقویم اقتصادی لحظه‌ای بازارهای مالی فارکس | سید موسوی{% endblock %}
+
+{% block extra_head %}
+<meta name="description" content="مهم‌ترین اخبار فاندامنتال فارکس و جهان را به صورت لحظه‌ای با تقویم اقتصادی پیشرفته ما دنبال کنید. پیش‌بینی دقیق نوسانات بازار با اخبار لحظه‌ای.">
+<meta name="keywords" content="تقویم اقتصادی, اخبار فارکس, اخبار فاندامنتال, تقویم اقتصادی فارکس, اخبار لحظه ای بازار مالی">
+<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+
+<!-- Schema.org for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "تقویم اقتصادی فاندامنتال",
+  "url": "{{ request.scheme }}://{{ request.get_host }}{{ request.path }}",
+  "description": "تقویم اقتصادی لحظه‌ای برای پیگیری اخبار مهم تاثیرگذار بر بازارهای مالی مانند فارکس و بازار کریپتوکارنسی.",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "All",
+  "inLanguage": "fa-IR"
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<main class="flex-auto py-5" dir="rtl">
+    <div class="space-y-14">
+        <div class="max-w-7xl space-y-14 px-4 mx-auto">
+            <div class="forex-course-card">
+                <div class="forex-card-overlay">
+                    
+                    <div class="forex-header">
+                        <h1>تقویم اقتصادی <span class="forex-symbol">فاندامنتال لحظه‌ای</span></h1>
+                        <p class="forex-tagline">جدیدترین اخبار فاندامنتال فارکس و کریپتو</p>
+                        <p class="forex-promise">تمامی حرکات بزرگ در بازارهایی مثل فارکس و رمزارزها ریشه در داده‌های کلان اقتصادی دارد. با اطلاع دقیق از زمان انتشار اخبار مهم، از نوسانات شدید بازار در امان بمانید.</p>
+                    </div>
+
+                    <!-- ویجت تقویم اقتصادی - با استایل هماهنگ -->
+                    <div class="bg-[#111111] border border-gray-800 rounded-3xl p-4 md:p-6 shadow-2xl max-w-5xl mx-auto mb-16 relative overflow-hidden" dir="ltr">
+                        <div class="absolute -right-10 -top-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl transition-all pointer-events-none"></div>
+                        
+                        <!-- TradingView Widget BEGIN -->
+                        <div class="tradingview-widget-container relative z-10" style="border-radius: 16px; overflow: hidden;">
+                            <div class="tradingview-widget-container__widget"></div>
+                            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-events.js" async>
+                            {
+                                "colorTheme": "dark",
+                                "isTransparent": true,
+                                "width": "100%",
+                                "height": "800",
+                                "locale": "fa_IR",
+                                "importanceFilter": "-1,0,1",
+                                "countryFilter": "ar,au,br,ca,cn,fr,de,in,id,it,jp,kr,mx,ru,sa,za,tr,gb,us,eu"
+                            }
+                            </script>
+                        </div>
+                        <!-- TradingView Widget END -->
+                    </div>
+
+                    <div class="styled-box info-box">
+                        <div class="box-title info-title"><span>📰</span> چگونه اخبار را تفسیر کنیم؟</div>
+                        <ul class="benefits-list">
+                            <li><span class="check-mark info-icon">✅</span><div><strong class="info-text">اهمیت خبر:</strong><p>اخبار قرمز رنگ یا ۳ ستاره بیشترین تاثیر را در نوسانات بازار دارند. این اخبار را به دقت زیر نظر بگیرید.</p></div></li>
+                            <li><span class="check-mark info-icon">✅</span><div><strong class="info-text">تفاوت پیش‌بینی و واقعی:</strong><p>بازار معمولاً بر اساس اختلاف بین داده پیش‌بینی شده (Forecast) و داده واقعی منتشر شده (Actual) واکنش نشان می‌دهد.</p></div></li>
+                            <li><span class="check-mark info-icon">✅</span><div><strong class="info-text">مدیریت ریسک در زمان خبر:</strong><p>توصیه می‌شود دقایقی قبل و بعد از اخبار مهم معامله جدیدی باز نکنید، مگر اینکه تسلط کاملی بر تحلیل فاندامنتال داشته باشید.</p></div></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<style>
+    .forex-course-card {
+        position: relative;
+        border-radius: 32px;
+        margin: 1rem 0;
+        width: 100%;
+        background-color: #000000;
+        background-image: url('{% static "assets/images/broker.png" %}');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        min-height: 900px;
+        overflow: hidden;
+    }
+    .forex-card-overlay {
+        background: rgba(0, 0, 0, 0.75);
+        padding: 3rem 2rem;
+        width: 100%;
+        min-height: 900px;
+        border-radius: 32px;
+    }
+    .forex-header {
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: 2rem;
+        margin-bottom: 4rem;
+    }
+    .forex-header h1 {
+        font-size: 2rem;
+        color: #ffffff;
+        letter-spacing: -0.3px;
+        margin-bottom: 1rem;
+        font-weight: 900;
+    }
+    .forex-symbol {
+        color: #3b82f6; /* blue-500 */
+        text-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+    }
+    .forex-tagline {
+        color: #3b82f6;
+        font-size: 1.3rem;
+        font-weight: bold;
+        margin-top: 0.5rem;
+    }
+    .forex-promise {
+        color: #e0e0e0;
+        margin-top: 1.2rem;
+        line-height: 1.8;
+        font-size: 1.05rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Box Styles */
+    .styled-box {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 20px;
+        padding: 2rem;
+        margin: 4rem auto;
+        max-width: 900px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+    }
+    .styled-box:hover {
+        transform: translateY(-5px);
+    }
+    .box-title {
+        display: flex;
+        gap: 0.8rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        font-size: 1.35rem;
+        align-items: center;
+    }
+    .styled-box p {
+        color: #ffffff;
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    .info-box {
+        border: 1px solid rgba(59, 130, 246, 0.4);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+    }
+    .info-title { color: #60a5fa; }
+    .info-icon { color: #60a5fa; }
+    .info-text { color: #60a5fa; }
+
+    .benefits-list {
+        list-style: none;
+    }
+    .benefits-list li {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+    }
+    .check-mark {
+        font-size: 1.2rem;
+        min-width: 1.8rem;
+    }
+    .benefits-list li strong {
+        font-size: 1.1rem;
+    }
+    .benefits-list li p {
+        color: #ddd;
+        font-size: 0.95rem;
+        margin-top: 0.4rem;
+        line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+        .forex-card-overlay {
+            padding: 2rem 1.2rem;
+        }
+        .forex-header h1 {
+            font-size: 1.6rem;
+        }
+        .styled-box {
+            padding: 1.5rem;
+            margin: 3rem 0;
+        }
+        .box-title {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+{% endblock %}

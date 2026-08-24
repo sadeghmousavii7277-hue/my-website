@@ -3,25 +3,25 @@ const darkModeCheckbox = document.querySelector("#dark-mode-checkbox");
 
 if (darkMode === "true") {
     document.documentElement.classList.add("dark");
-    darkModeCheckbox.checked = true;
+    if (darkModeCheckbox) darkModeCheckbox.checked = true;
 } else {
     document.documentElement.classList.remove("dark");
-    darkModeCheckbox.checked = false;
+    if (darkModeCheckbox) darkModeCheckbox.checked = false;
 }
 
 const darkModeButton = document.querySelector("#dark-mode-button");
-darkModeButton.addEventListener("click", toggleDarkMode);
-darkModeCheckbox.addEventListener("change", toggleDarkMode);
+if (darkModeButton) darkModeButton.addEventListener("click", toggleDarkMode);
+if (darkModeCheckbox) darkModeCheckbox.addEventListener("change", toggleDarkMode);
 
 function toggleDarkMode() {
     if (document.documentElement.classList.contains("dark")) {
         document.documentElement.classList.remove("dark");
         localStorage.setItem("darkMode", "false");
-        darkModeCheckbox.checked = false;
+        if (darkModeCheckbox) darkModeCheckbox.checked = false;
     } else {
         document.documentElement.classList.add("dark");
         localStorage.setItem("darkMode", "true");
-        darkModeCheckbox.checked = true;
+        if (darkModeCheckbox) darkModeCheckbox.checked = true;
     }
 }
 
@@ -129,13 +129,4 @@ if (players) {
     );
 }
 
-const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
-if (scrollToTopBtn) {
-    scrollToTopBtn.addEventListener("click", function (event) {
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    });
-}

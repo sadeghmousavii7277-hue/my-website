@@ -5,7 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="{% static 'assets/images/favicon.svg' %}" />
+    
+    {% block seo %}
+    <meta name="description" content="آکادمی موسوی - مرجع تخصصی آموزش بازارهای مالی، فارکس، کریپتو و تحلیل تکنیکال">
+    <meta name="keywords" content="آموزش فارکس, ترید, بازارهای مالی, ارز دیجیتال, تحلیل تکنیکال">
+    <meta name="author" content="آکادمی موسوی">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="آکادمی موسوی - آموزش بازارهای مالی">
+    <meta property="og:description" content="مرجع تخصصی آموزش بازارهای مالی، فارکس، کریپتو و تحلیل تکنیکال">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'assets/images/logo.png' %}">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="آکادمی موسوی - آموزش بازارهای مالی">
+    <meta name="twitter:description" content="مرجع تخصصی آموزش بازارهای مالی، فارکس، کریپتو و تحلیل تکنیکال">
+    <meta name="twitter:image" content="{% static 'assets/images/logo.png' %}">
+    {% endblock seo %}
 
+    {% block extra_head %}{% endblock extra_head %}
     {% comment %} فایل‌های CSS با تگ static بارگذاری می‌شوند {% endcomment %}
     <link rel="stylesheet" href="{% static 'assets/css/dependencies/swiper-bundle.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/dependencies/plyr.min.css' %}" />
@@ -74,7 +95,7 @@
     {% block scripts %}
     {% endblock scripts %}
 
-
+    {% include 'partials/_auth_modal.html' %}
 </body>
 
 </html>

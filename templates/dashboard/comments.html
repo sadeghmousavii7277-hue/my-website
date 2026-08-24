@@ -1,0 +1,24 @@
+{% extends "dashboard/base_dashboard.html" %}
+
+{% block dashboard_content %}
+<div>
+    <h2 class="text-2xl font-black mb-6 text-foreground">تنظیمات حساب</h2>
+    <div class="bg-background border border-border rounded-xl p-8">
+        <form class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-muted mb-2">نام و نام خانوادگی</label>
+                <input type="text" class="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground" value="{{ user.first_name|default:user.username }}">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-muted mb-2">شماره موبایل (نام کاربری)</label>
+                <input type="text" class="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground" value="{{ user.username }}" disabled>
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-muted mb-2">رمز عبور جدید (اختیاری)</label>
+                <input type="password" class="w-full bg-secondary border border-border rounded-lg px-4 py-3 text-foreground" placeholder="رمز عبور جدید...">
+            </div>
+            <button type="button" class="mt-6 px-8 py-3 bg-primary text-primary-foreground font-bold rounded-lg transition hover:bg-primary/90">ذخیره تغییرات</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

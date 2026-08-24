@@ -3,6 +3,7 @@
                 <div class="flex items-center gap-3">
                     <div class="flex-grow border-t border-border border-dashed"></div>
                     <button type="button"
+                        onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
                         class="flex-shrink-0 h-11 inline-flex items-center gap-3 bg-secondary rounded-full text-foreground transition-colors hover:text-primary px-4"
                         id="scrollToTopBtn">
                         <span class="text-xs">برگشت به بالا</span>
@@ -14,7 +15,7 @@
                 </div>
                 <div class="flex lg:flex-nowrap flex-wrap gap-8 py-10">
                     <div class="md:w-5/12 w-full">
-                        <a href="./home.html" class="inline-flex items-center gap-2 text-primary">
+                        <a href="{% url 'home' %}" class="inline-flex items-center gap-2 text-primary">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="w-6 h-6">
                                 <path
@@ -24,45 +25,12 @@
                                     clip-rule="evenodd" />
                             </svg>
                             <span class="flex flex-col items-start">
-                                <span class="font-semibold text-sm text-muted">آکــــادمـــی</span>
-                                <span class="font-black text-xl">نـــابــــغه</span>
+                                <span class="font-semibold text-sm text-muted">موسوی</span>
+                                <span class="font-black text-xl">آکادمی</span>
                             </span>
                         </a>
                     </div>
-                    <div class="md:w-7/12 w-full">
-                        <div class="flex flex-wrap items-center gap-10">
-                            <div class="flex items-center gap-5">
-                                <span
-                                    class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-muted">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                        class="w-5 h-5">
-                                        <path fill-rule="evenodd"
-                                            d="M2 3.5A1.5 1.5 0 0 1 3.5 2h1.148a1.5 1.5 0 0 1 1.465 1.175l.716 3.223a1.5 1.5 0 0 1-1.052 1.767l-.933.267c-.41.117-.643.555-.48.95a11.542 11.542 0 0 0 6.254 6.254c.395.163.833-.07.95-.48l.267-.933a1.5 1.5 0 0 1 1.767-1.052l3.223.716A1.5 1.5 0 0 1 18 15.352V16.5a1.5 1.5 0 0 1-1.5 1.5H15c-1.149 0-2.263-.15-3.326-.43A13.022 13.022 0 0 1 2.43 8.326 13.019 13.019 0 0 1 2 5V3.5Z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </span>
-                                <div class="flex flex-col font-black space-y-2">
-                                    <span class="text-sm text-primary">شماره تلفن</span>
-                                    <span class="text-foreground">۰۲۱−۱۲۳۴۵۶۷</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-5">
-                                <span
-                                    class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-muted">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                        class="w-5 h-5">
-                                        <path fill-rule="evenodd"
-                                            d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z"
-                                            clip-rule="evenodd"></path>
-                                    </svg>
-                                </span>
-                                <div class="flex flex-col font-black space-y-2">
-                                    <span class="text-sm text-primary">ساعات کاری</span>
-                                    <span class="text-foreground">۰۹:۰۰ - ۱۷:۰۰</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="flex md:flex-nowrap flex-wrap gap-8">
                     <div class="md:w-5/12 w-full">
@@ -72,13 +40,10 @@
                                     <div class="w-1 h-1 bg-foreground rounded-full"></div>
                                     <div class="w-2 h-2 bg-foreground rounded-full"></div>
                                 </div>
-                                <div class="font-black text-foreground">دربــــاره</div>
+                                <div class="font-black text-foreground">دربــــاره ما</div>
                             </div>
                             <p class="font-semibold text-sm text-muted">
-                                نابغه یکی از پرتلاش‌ترین و بروزترین وبسایت های آموزشی در سطح ایران
-                                است که همیشه تلاش کرده تا بتواند جدیدترین و بروزترین مقالات و
-                                دوره‌های آموزشی را در اختیار علاقه‌مندان ایرانی قرار دهد. تبدیل کردن
-                                برنامه نویسان ایرانی به بهترین برنامه نویسان جهان هدف ماست.
+                                موسوی آکادمی با هدف آموزش اصولی و کاربردی در دنیای مالی و ترید ایجاد شد. ما تلاش می‌کنیم با ارائه دوره‌های تخصصی، تحلیل‌های دقیق و محتوای آموزشی قابل‌فهم، مسیر رشد و موفقیت شما در بازارهای مالی را ساده‌تر و سریع‌تر کنیم. رسالت ما ارائه آموزش‌هایی است که در عمل نتیجه بدهند.
                             </p>
                         </div>
                     </div>
@@ -94,25 +59,14 @@
                                 </div>
                                 <ul class="flex flex-col space-y-1">
                                     <li>
-                                        <a href="#"
-                                            class="inline-flex font-semibold text-sm text-muted hover:text-primary">قوانین
-                                            و
-                                            مقررات</a>
+                                        <a href="{% url 'employment' %}" class="inline-flex font-semibold text-sm text-muted hover:text-primary">استخدام در مجموعه</a>
                                     </li>
                                     <li>
-                                        <a href="#"
-                                            class="inline-flex font-semibold text-sm text-muted hover:text-primary">مدرسان</a>
+                                        <a href="https://t.me/academy_support11" target="_blank"
+                                            class="inline-flex font-semibold text-sm text-muted hover:text-primary">پشتیبانی</a>
                                     </li>
                                     <li>
-                                        <a href="#"
-                                            class="inline-flex font-semibold text-sm text-muted hover:text-primary">درباره
-                                            نابغه</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"
-                                            class="inline-flex font-semibold text-sm text-muted hover:text-primary">ارتباط
-                                            با
-                                            ما</a>
+                                        <a href="{% url 'contact_us' %}" class="inline-flex font-semibold text-sm text-muted hover:text-primary">ارتباط با ما</a>
                                     </li>
                                 </ul>
                             </div>
@@ -129,7 +83,7 @@
                                         برای اطلاع از جدیدترین اخبار و جشنوراه‌های تخفیفی نابغه ایمیل خود
                                         را وارد کنید.
                                     </p>
-                                    <form action="#">
+                                    <form id="newsletter-form" action="#" onsubmit="return handleNewsletterSubmit(event)">
                                         <div class="flex items-center gap-3 relative">
                                             <span class="absolute right-3 text-muted">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -142,15 +96,109 @@
                                                     </path>
                                                 </svg>
                                             </span>
-                                            <input type="email"
+                                            <input type="email" id="newsletter-email" name="email"
                                                 class="form-input w-full h-11 !ring-0 !ring-offset-0 bg-secondary border-0 focus:border-border rounded-xl text-sm text-foreground pr-10"
                                                 placeholder="آدرس ایمیل" required />
                                             <button type="submit"
                                                 class="h-11 inline-flex items-center justify-center gap-3 bg-primary rounded-xl whitespace-nowrap text-xs text-primary-foreground transition-all hover:opacity-80 px-4">ثبت
                                                 ایمیل</button>
                                         </div>
+                                        <p id="newsletter-error" class="text-xs text-red-500 mt-2 hidden"></p>
                                     </form>
                                 </div>
+
+                                <!-- Newsletter Success Modal -->
+                                <div id="newsletter-success-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-background/80 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+                                    <div class="bg-secondary rounded-2xl p-8 max-w-sm w-full mx-4 text-center border border-border shadow-2xl transform scale-95 transition-transform duration-300">
+                                        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                            </svg>
+                                        </div>
+                                        <h3 class="text-lg font-black text-foreground mb-2">عملیات موفق</h3>
+                                        <p class="text-sm text-muted">ایمیل شما با موفقیت ثبت شد</p>
+                                    </div>
+                                </div>
+                                
+                                <script>
+                                    function getCookie(name) {
+                                        let cookieValue = null;
+                                        if (document.cookie && document.cookie !== '') {
+                                            const cookies = document.cookie.split(';');
+                                            for (let i = 0; i < cookies.length; i++) {
+                                                const cookie = cookies[i].trim();
+                                                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                                                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        return cookieValue;
+                                    }
+                                    
+                                    function showNewsletterModal() {
+                                        const modal = document.getElementById('newsletter-success-modal');
+                                        const modalInner = modal.querySelector('div.bg-secondary');
+                                        
+                                        modal.classList.remove('hidden');
+                                        // Trigger reflow
+                                        void modal.offsetWidth;
+                                        
+                                        modal.classList.remove('opacity-0');
+                                        modalInner.classList.remove('scale-95');
+                                        
+                                        setTimeout(() => {
+                                            modal.classList.add('opacity-0');
+                                            modalInner.classList.add('scale-95');
+                                            setTimeout(() => {
+                                                modal.classList.add('hidden');
+                                            }, 300);
+                                        }, 4000);
+                                    }
+                                    
+                                    async function handleNewsletterSubmit(e) {
+                                        e.preventDefault();
+                                        const emailInput = document.getElementById('newsletter-email');
+                                        const errorMsg = document.getElementById('newsletter-error');
+                                        const email = emailInput.value.trim();
+                                        
+                                        errorMsg.classList.add('hidden');
+                                        errorMsg.textContent = '';
+                                        
+                                        if (!email || !email.includes('@')) {
+                                            errorMsg.textContent = 'لطفاً ایمیل معتبری وارد کنید';
+                                            errorMsg.classList.remove('hidden');
+                                            return false;
+                                        }
+                                        
+                                        try {
+                                            const response = await fetch('/api/newsletter/', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'X-CSRFToken': getCookie('csrftoken')
+                                                },
+                                                body: JSON.stringify({ email: email })
+                                            });
+                                            
+                                            const data = await response.json();
+                                            
+                                            if (data.status === 'success') {
+                                                emailInput.value = '';
+                                                showNewsletterModal();
+                                            } else {
+                                                errorMsg.textContent = data.message || 'خطایی رخ داد';
+                                                errorMsg.classList.remove('hidden');
+                                            }
+                                        } catch (error) {
+                                            errorMsg.textContent = 'خطا در ارتباط با سرور';
+                                            errorMsg.classList.remove('hidden');
+                                        }
+                                        
+                                        return false;
+                                    }
+                                </script>
                                 <div class="space-y-5">
                                     <div class="flex items-center gap-3">
                                         <div class="flex items-center gap-1">
@@ -161,8 +209,7 @@
                                     </div>
                                     <ul class="flex flex-wrap items-center gap-5">
                                         <li>
-                                            <a href="#"
-                                                class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-foreground transition-colors hover:text-primary">
+                                            <a href="#" class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-foreground transition-colors hover:text-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                     stroke-linejoin="round" class="w-5 h-5">
@@ -173,8 +220,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#"
-                                                class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-foreground transition-colors hover:text-primary">
+                                            <a href="#" class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-foreground transition-colors hover:text-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                     stroke-linejoin="round" class="w-5 h-5">
@@ -184,8 +230,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="#"
-                                                class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-foreground transition-colors hover:text-primary">
+                                            <a href="#" class="flex items-center justify-center w-12 h-12 bg-secondary rounded-full text-foreground transition-colors hover:text-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                                     stroke-linejoin="round" class="w-5 h-5">
