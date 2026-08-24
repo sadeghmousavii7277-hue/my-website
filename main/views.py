@@ -9,6 +9,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
@@ -216,6 +217,7 @@ def profile_comments_view(request):
 # ویوهای احراز هویت (AJAX)
 # =========================================
 
+@csrf_exempt
 def login_api(request):
     if request.method == 'POST':
         try:
@@ -235,6 +237,7 @@ def login_api(request):
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
 
 
+@csrf_exempt
 def register_api(request):
     if request.method == 'POST':
         try:
@@ -262,10 +265,12 @@ def register_api(request):
             return JsonResponse({'status': 'error', 'message': str(e)})
     return JsonResponse({'status': 'error', 'message': 'Method not allowed'})
 
+@csrf_exempt
 def logout_api(request):
     logout(request)
     return JsonResponse({'status': 'success', 'message': 'خروج موفقیت آمیز'})
 
+@csrf_exempt
 def newsletter_api(request):
     if request.method == 'POST':
         try:

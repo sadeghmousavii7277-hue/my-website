@@ -309,17 +309,18 @@
                         },
                         body: JSON.stringify({ phone, password })
                     });
-                    const data = await response.json();
+                    const data = await response.json().catch(() => null);
 
-                    if (data.status === 'success') {
+                    if (data && data.status === 'success') {
                         msgDiv.className = 'auth-message success';
                         msgDiv.textContent = data.message;
                         setTimeout(() => window.location.reload(), 500);
                     } else {
                         msgDiv.className = 'auth-message error';
-                        msgDiv.textContent = data.message;
+                        msgDiv.textContent = (data && data.message) ? data.message : 'خطا در ارتباط با سرور (کد خطا: ' + response.status + ')';
                     }
                 } catch (err) {
+                    console.error('Login error:', err);
                     msgDiv.className = 'auth-message error';
                     msgDiv.textContent = 'خطا در ارتباط با سرور';
                 }
@@ -356,17 +357,18 @@
                         },
                         body: JSON.stringify({ name, phone, password })
                     });
-                    const data = await response.json();
+                    const data = await response.json().catch(() => null);
 
-                    if (data.status === 'success') {
+                    if (data && data.status === 'success') {
                         msgDiv.className = 'auth-message success';
                         msgDiv.textContent = data.message;
                         setTimeout(() => window.location.reload(), 500);
                     } else {
                         msgDiv.className = 'auth-message error';
-                        msgDiv.textContent = data.message;
+                        msgDiv.textContent = (data && data.message) ? data.message : 'خطا در ارتباط با سرور (کد خطا: ' + response.status + ')';
                     }
                 } catch (err) {
+                    console.error('Register error:', err);
                     msgDiv.className = 'auth-message error';
                     msgDiv.textContent = 'خطا در ارتباط با سرور';
                 }

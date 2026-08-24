@@ -16,6 +16,15 @@ SECRET_KEY = 'django-insecure-4al&8q01fw#cm=^445ji*yumt92&jrcu7dj6x(@@du=ho47y$o
 DEBUG = True
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://moosavi-academy.ir',
+    'https://www.moosavi-academy.ir',
+    'http://moosavi-academy.ir',
+    'http://www.moosavi-academy.ir',
+    'http://localhost',
+    'http://127.0.0.1',
+]
+
 # ==============================
 # اپلیکیشن‌های فعال
 # ==============================
