@@ -1,8 +1,8 @@
-<header class="bg-background/80 backdrop-blur-xl border-b border-border sticky top-0 z-30 flex flex-col"
+<header class="bg-background/80 backdrop-blur-xl border-b border-border sticky top-0 z-30 flex flex-col w-full"
         x-data="{ offcanvasOpen: false, openSearchBox: false }">
     <div class="max-w-7xl relative px-4 mx-auto w-full">
-        <div class="flex items-center gap-8 h-20">
-            <div class="flex items-center gap-3">
+        <div class="flex items-center justify-between gap-3 h-20 w-full">
+            <div class="flex items-center gap-3 shrink-0">
                 <button type="button"
                         class="lg:hidden inline-flex items-center justify-center relative w-10 h-10 bg-secondary rounded-full text-foreground"
                         x-on:click="offcanvasOpen = true">
@@ -28,18 +28,18 @@
                     </span>
                 </a>
             </div>
-            <div class="lg:flex hidden items-center gap-5">
-                <ul class="flex items-center gap-3 xl:gap-5">
+            <div class="hidden lg:flex items-center justify-center flex-1 min-w-0 px-2">
+                <ul class="flex items-center gap-2 lg:gap-3">
                     <li class="relative group/submenu">
                         <a href="#" class="inline-flex items-center gap-1 text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">آمـــوزشها</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">آمـــوزشها</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor"
-                                 class="w-5 h-5 transition-transform group-hover/submenu:rotate-180">
+                                 class="w-4 h-4 transition-transform group-hover/submenu:rotate-180">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
                             </svg>
                         </a>
-                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2">
+                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2 z-50">
                             <li>
                                 <a href="{% url 'forex_course' %}" class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <span class="font-semibold text-xs">دوره صفر تا صد فارکس</span>
@@ -64,14 +64,14 @@
                     </li>
                     <li class="relative group/submenu">
                         <a href="#" class="inline-flex items-center gap-1 text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">کانال سیگنال</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">کانال سیگنال</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor"
-                                 class="w-5 h-5 transition-transform group-hover/submenu:rotate-180">
+                                 class="w-4 h-4 transition-transform group-hover/submenu:rotate-180">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
                             </svg>
                         </a>
-                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2">
+                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2 z-50">
                             <li>
                                 <a href="{% url 'gold_signal' %}" class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <span class="font-semibold text-xs">سیگنال فارکس</span>
@@ -86,14 +86,14 @@
                     </li>
                     <li class="relative group/submenu">
                         <a href="#" class="inline-flex items-center gap-1 text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">بروکر و صرافی</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">بروکر و صرافی</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor"
-                                 class="w-5 h-5 transition-transform group-hover/submenu:rotate-180">
+                                 class="w-4 h-4 transition-transform group-hover/submenu:rotate-180">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
                             </svg>
                         </a>
-                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2">
+                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2 z-50">
                             <li>
                                 <a href="{% url 'stb_broker' %}" class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <span class="font-semibold text-xs">معرفی بروکر</span>
@@ -109,14 +109,14 @@
 
                     <li class="relative group/submenu">
                         <a href="#" class="inline-flex items-center gap-1 text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">ابزار معاملاتی</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">ابزار معاملاتی</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                  stroke="currentColor"
-                                 class="w-5 h-5 transition-transform group-hover/submenu:rotate-180">
+                                 class="w-4 h-4 transition-transform group-hover/submenu:rotate-180">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
                             </svg>
                         </a>
-                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2">
+                        <ul class="absolute top-full right-0 w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 opacity-0 invisible transition-all group-hover/submenu:opacity-100 group-hover/submenu:visible p-3 mt-2 z-50">
                             <li>
                                 <a href="{% url 'risk_calculator' %}" class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                     <span class="font-semibold text-xs">ماشین حساب مدیریت ریسک</span>
@@ -132,28 +132,28 @@
 
                     <li>
                         <a href="{% url 'books' %}" class="inline-flex text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">کتاب ها و جزوه ها</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">کتاب ها و جزوه ها</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'strategy' %}" class="inline-flex text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">استراتژی</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">استراتژی</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'employment' %}" class="inline-flex text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">استخدام در مجموعه</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">استخدام در مجموعه</span>
                         </a>
                     </li>
                     <li>
                         <a href="{% url 'blog:post_list' %}" class="inline-flex text-muted transition-colors hover:text-foreground">
-                            <span class="font-semibold text-[13px] xl:text-sm whitespace-nowrap">مطالب آموزشی</span>
+                            <span class="font-semibold text-xs lg:text-sm whitespace-nowrap">مطالب آموزشی</span>
                         </a>
                     </li>
                 </ul>
             </div>
 
-            <div class="flex items-center md:gap-5 gap-3 mr-auto">
+            <div class="flex items-center md:gap-4 gap-2.5 shrink-0">
                 <button type="button"
                         class="hidden lg:inline-flex items-center justify-center w-10 h-10 bg-secondary rounded-full text-foreground"
                         id="dark-mode-button"
@@ -174,7 +174,7 @@
                     </span>
                 </button>
 
-                <a href="{% url 'cart' %}" class="inline-flex items-center justify-center relative w-10 h-10 bg-secondary rounded-full text-foreground">
+                <a href="{% url 'cart' %}" class="inline-flex items-center justify-center relative w-10 h-10 bg-secondary rounded-full text-foreground shrink-0">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                          stroke="currentColor" class="w-5 h-5">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -187,7 +187,7 @@
                 </a>
 
                 {% if user.is_authenticated %}
-                <div class="relative" x-data="{ isOpen: false }">
+                <div class="relative shrink-0" x-data="{ isOpen: false }">
                     <button class="flex items-center sm:gap-3 gap-1" x-on:click="isOpen = !isOpen">
                         <span class="inline-flex items-center justify-center w-9 h-9 bg-secondary rounded-full text-foreground">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -207,7 +207,7 @@
                             </svg>
                         </span>
                     </button>
-                    <div class="absolute top-full left-0 pt-3" x-show="isOpen" x-on:click.outside="isOpen = false" x-transition>
+                    <div class="absolute top-full left-0 pt-3 z-50" x-show="isOpen" x-on:click.outside="isOpen = false" x-transition>
                         <div class="w-56 bg-background border border-border rounded-xl shadow-2xl shadow-black/5 p-3">
                             <a href="{% url 'profile' %}" class="flex items-center gap-2 w-full text-foreground transition-colors hover:text-primary px-3 py-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -255,7 +255,7 @@
                     </div>
                 </div>
                 {% else %}
-                <button type="button" class="trigger-auth-modal flex items-center justify-center h-10 px-4 bg-primary text-primary-foreground rounded-full font-bold text-sm transition-colors hover:bg-primary/90">
+                <button type="button" class="trigger-auth-modal flex items-center justify-center h-10 px-4 bg-primary text-primary-foreground rounded-full font-bold text-sm transition-colors hover:bg-primary/90 shrink-0 whitespace-nowrap">
                     ورود / ثبت نام
                 </button>
                 {% endif %}
