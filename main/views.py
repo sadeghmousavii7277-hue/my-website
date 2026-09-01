@@ -320,11 +320,23 @@ def article_category_view(request, slug):
 from django.contrib.auth.decorators import user_passes_test
 from django.utils import timezone
 from django.db.models import Sum
+from django.contrib import messages
+from django.shortcuts import redirect
 from .models import SiteVisit, Newsletter, Book, Strategy
 from blog.models import Post
 
 def manager_check(user):
     return user.is_active and (user.is_superuser or user.groups.filter(name='Manager').exists())
+
+@user_passes_test(manager_check, login_url='/admin/login/')
+def manager_delete_post(request, post_id):
+    """حذف یک پست بلاگ توسط مدیر"""
+    if request.method == 'POST':
+        post = get_object_or_404(Post, id=post_id)
+        post_title = post.title
+        post.delete()
+        messages.success(request, f'مقاله "{post_title}" با موفقیت حذف شد.')
+    return redirect('manager_dashboard')
 
 @user_passes_test(manager_check, login_url='/admin/login/')
 def manager_dashboard(request):
@@ -341,7 +353,7 @@ def manager_dashboard(request):
 
     users_list = User.objects.all().order_by('-date_joined')
     
-    top_posts = Post.objects.all().order_by('-views')[:5]
+    top_posts = Post.objects.all().order_by('-published_date')
     top_strategies = Strategy.objects.all().order_by('-views')[:5]
     top_books = Book.objects.all().order_by('-views')[:5]
     

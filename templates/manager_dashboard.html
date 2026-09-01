@@ -112,13 +112,43 @@
         color: #fff;
         border-radius: 8px;
     }
+
+    .btn-delete {
+        background-color: transparent;
+        border: 1px solid #ef4444;
+        color: #ef4444;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .btn-delete:hover {
+        background-color: #ef4444;
+        color: #fff;
+    }
+
+    .alert-success {
+        background-color: #064e3b;
+        border: 1px solid #10b981;
+        color: #6ee7b7;
+        padding: 12px 18px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="dashboard-container">
     <h1 class="dashboard-title">داشبورد آماری (Manager Dashboard)</h1>
-    
+
+    {% if messages %}
+    <div class="alert-success">
+        {% for message in messages %}{{ message }}{% endfor %}
+    </div>
+    {% endif %}
     <div class="stats-grid">
         <div class="stat-card">
             <h3>تعداد کل کاربران ثبت‌نام شده</h3>
@@ -169,12 +199,14 @@
     
     <div class="content-grid">
         <div class="data-section">
-            <h2>محبوب‌ترین مطالب آموزشی (وبلاگ)</h2>
+            <h2>مطالب آموزشی (وبلاگ)</h2>
             <table>
                 <thead>
                     <tr>
                         <th>عنوان مطلب</th>
                         <th>بازدید</th>
+                        <th>وضعیت</th>
+                        <th>عملیات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -182,9 +214,16 @@
                     <tr>
                         <td><a href="{{ post.get_absolute_url }}" style="color: #60a5fa;">{{ post.title }}</a></td>
                         <td>{{ post.views }}</td>
+                        <td>{{ post.get_status_display }}</td>
+                        <td>
+                            <form method="post" action="{% url 'manager_delete_post' post.id %}" onsubmit="return confirm('آیا از حذف این مقاله مطمئن هستید؟')">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-delete">🗑 حذف</button>
+                            </form>
+                        </td>
                     </tr>
                     {% empty %}
-                    <tr><td colspan="2">داده‌ای موجود نیست</td></tr>
+                    <tr><td colspan="4">داده‌ای موجود نیست</td></tr>
                     {% endfor %}
                 </tbody>
             </table>

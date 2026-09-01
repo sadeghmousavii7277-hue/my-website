@@ -9,6 +9,7 @@ urlpatterns = [
     path('series/', views.series_view, name='series'),
     path('cart/', views.cart_view, name='cart'),
     path('manager-dashboard/', views.manager_dashboard, name='manager_dashboard'),
+    path('manager-dashboard/delete-post/<int:post_id>/', views.manager_delete_post, name='manager_delete_post'),
     path('tools/risk-management-calculator/', views.risk_calculator_view, name='risk_calculator'),
     path('tools/economic-calendar/', views.economic_calendar_view, name='economic_calendar'),
 
