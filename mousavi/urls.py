@@ -6,6 +6,8 @@ from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView
 from .sitemaps import StaticViewSitemap, BlogSitemap
 
+from blog import views as blog_views
+
 sitemaps = {
     'static': StaticViewSitemap,
     'blog': BlogSitemap,
@@ -13,6 +15,9 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # اندپوینت انتشار خودکار مقالات از n8n
+    path('api/articles/create/', blog_views.create_article_api, name='api_create_article'),
 
     # مسیر صفحه اصلی سایت (اپ main)
     path('', include('main.urls')),
@@ -22,6 +27,7 @@ urlpatterns = [
 
     # مسیر اپ وبلاگ
     path('blog/', include('blog.urls')),
+
 
     # مسیر ادیتور متن پیشرفته
     path('tinymce/', include('tinymce.urls')),
