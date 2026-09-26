@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
@@ -40,7 +41,7 @@ urlpatterns = [
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
 
     # تاییدیه اینماد
-    path('18634421.txt', lambda request: HttpResponse("", content_type="text/plain")),
+    path('18634421.txt', csrf_exempt(lambda request: HttpResponse("18634421", content_type="text/plain; charset=utf-8"))),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
