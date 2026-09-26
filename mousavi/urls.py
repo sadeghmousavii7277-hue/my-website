@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView
+from django.http import HttpResponse
 from .sitemaps import StaticViewSitemap, BlogSitemap
 
 from blog import views as blog_views
@@ -37,6 +38,9 @@ urlpatterns = [
 
     # Robots.txt
     path('robots.txt', TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+
+    # تاییدیه اینماد
+    path('18634421.txt', lambda request: HttpResponse("", content_type="text/plain")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
